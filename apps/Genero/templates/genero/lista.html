@@ -1,0 +1,9 @@
+{%extends 'base.html'%}
+{%block conteudo%}
+<h1>Lista de Genero</h1>
+<ul>
+    {%for form in generos%}
+        <li>{{form.nome}}</li>
+        {% endfor %}
+</ul>
+{%endblock%}

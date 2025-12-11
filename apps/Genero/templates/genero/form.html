@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<div style="display:flex; justify-content:center; margin-top: 40px;">
+    <div style="width: 500px; padding: 20px; border: 2px solid #333; border-radius: 15px;">
+        <h2 style="text-align:center; margin-bottom:20px;">{{ titulo }}</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <button type="submit" style="margin-top:10px; padding:10px 20px;">Salvar</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

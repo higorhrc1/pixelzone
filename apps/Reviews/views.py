@@ -1,46 +1,63 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from .forms import ReviewForm
-from .models import Review
-from pixelzone.utils import login_required_custom, get_logged_user
+from django.shortcuts import render, get_object_or_404, redirect
+from apps.Usuario.models import Usuario
 from apps.Jogos.models import Jogo
+from .models import Review
 
-@login_required_custom
+def lista_reviews(request, jogo_pk):
+    jogo = get_object_or_404(Jogo, pk=jogo_pk)
+    reviews = Review.objects.filter(jogo=jogo).order_by('-data')
+
+    context = {
+        "jogo": jogo,
+        "reviews": reviews
+    }
+
+    return render(request, "reviews/lista.html", context)
+
+
 def criar_review(request, jogo_pk):
     jogo = get_object_or_404(Jogo, pk=jogo_pk)
-    if request.method == 'POST':
-        form = ReviewForm(request.POST)
-        if form.is_valid():
-            r = form.save(commit=False)
-            r.jogo = jogo
-            r.usuario = get_logged_user(request)
-            r.save()
-    return redirect('jogos:detalhe', pk=jogo_pk)
 
-@login_required_custom
+    if request.method == "POST":
+        usuario_id = request.POST.get("usuario")
+        nota = request.POST.get("nota")
+        comentario = request.POST.get("comentario")
+
+        usuario = Usuario.objects.get(pk=usuario_id)
+
+        Review.objects.create(
+            nota=nota,
+            comentario=comentario,
+            usuario=usuario,
+            jogo=jogo
+        )
+
+        return redirect("reviews:lista", jogo_pk=jogo.pk)
+
+    usuarios = Usuario.objects.all()
+
+    context = {
+        "usuarios": usuarios,
+        "jogo": jogo
+    }
+
+    return render(request, "reviews/criar.html", context)
 def editar_review(request, pk):
     review = get_object_or_404(Review, pk=pk)
-    if review.usuario.id != request.session.get('usuario_id'):
-        return redirect('jogos:detalhe', pk=review.jogo.pk)
-    if request.method == 'POST':
-        form = ReviewForm(request.POST, instance=review)
-        if form.is_valid():
-            form.save()
-            return redirect('jogos:detalhe', pk=review.jogo.pk)
-    else:
-        form = ReviewForm(instance=review)
-    return render(request, 'reviews/form.html', {'form': form, 'edit': True, 'review': review})
 
-@login_required_custom
+    if request.method == "POST":
+        review.nota = request.POST.get("nota")
+        review.comentario = request.POST.get("comentario")
+        review.save()
+        return redirect("reviews:lista", jogo_pk=review.jogo.pk)
+
+    return render(request, "reviews/editar.html", {
+        "review": review
+    })
 def excluir_review(request, pk):
     review = get_object_or_404(Review, pk=pk)
-    usuario_id = request.session.get('usuario_id')
-    is_owner = review.usuario.id == usuario_id
-    user = get_logged_user(request)
-    is_admin = user and getattr(user, 'is_admin', False)
-    if not (is_owner or is_admin):
-        return redirect('jogos:detalhe', pk=review.jogo.pk)
     if request.method == 'POST':
-        jogo_pk = review.jogo.pk
+        jogo_pk = review.jogo.pk  # pega o pk do jogo relacionado
         review.delete()
-        return redirect('jogos:detalhe', pk=jogo_pk)
-    return render(request, 'reviews/confirm_delete.html', {'object': review})
+        return redirect('reviews:lista', jogo_pk=jogo_pk)  # passa o argumento
+    return render(request, 'reviews/excluir.html', {'review': review})

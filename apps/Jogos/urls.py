@@ -9,5 +9,4 @@ urlpatterns = [
     path('criar/', views.criar_jogo, name='criar'),
     path('editar/<int:pk>/', views.editar_jogo, name='editar'),
     path('excluir/<int:pk>/', views.excluir_jogo, name='excluir'),
-    path('favorito/<int:pk>/', views.adicionar_favorito, name='favorito'),
 ]

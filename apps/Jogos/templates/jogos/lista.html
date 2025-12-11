@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+<h1>Lista de jogos</h1>
+<ul>
+    {% for form in jogos %}
+        <li>{{ form.nome }} — {{ form.genero }}</li>
+
+        <a href="{% url 'reviews:lista' form.pk %}">
+            Ver Reviews
+        </a>
+
+        <a href="{% url 'reviews:criar' form.pk %}">
+            Adicionar Review
+        </a>
+    {% endfor %}
+</ul>
+{% endblock %}

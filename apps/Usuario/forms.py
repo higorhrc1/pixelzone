@@ -1,10 +1,7 @@
 from django import forms
 from .models import Usuario
-from pixelzone.utils import verify_password
 
-class UsuarioRegisterForm(forms.ModelForm):
-    senha = forms.CharField(widget=forms.PasswordInput, label='Senha')
-    senha_confirm = forms.CharField(widget=forms.PasswordInput, label='Confirmar senha')
+class registroform(forms.ModelForm):
 
     class Meta:
         model = Usuario
@@ -17,7 +14,3 @@ class UsuarioRegisterForm(forms.ModelForm):
         if s1 and s2 and s1 != s2:
             raise forms.ValidationError('As senhas não coincidem.')
         return cleaned
-
-class UsuarioLoginForm(forms.Form):
-    email = forms.EmailField()
-    senha = forms.CharField(widget=forms.PasswordInput)

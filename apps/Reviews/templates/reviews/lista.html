@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<h1>Reviews de {{ jogo.nome }}</h1>
+
+<ul>
+    {% for review in reviews %}
+        <li>
+            <strong>{{ review.usuario.nome_usuario }}</strong> 
+            — Nota: {{ review.nota }} <br>
+            {{ review.comentario }}
+
+            <div>
+                <a href="{% url 'reviews:editar' review.pk %}">
+                    Editar
+                </a>
+
+                <a href="{% url 'reviews:excluir' review.pk %}">
+                    Excluir
+                </a>
+            </div>
+        </li>
+    {% empty %}
+        <li>Nenhuma review cadastrada ainda.</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'reviews:criar' jogo.pk %}">
+    Adicionar Review
+</a>
+
+{% endblock %}

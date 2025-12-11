@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+<h1>Excluir Review</h1>
+
+<p>Tem certeza que deseja excluir essa review?</p>
+
+<p><strong>{{ review.jogo.nome }}</strong> — nota: {{ review.nota }}</p>
+
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit">Excluir</button>
+    <a href="{% url 'reviews:lista' review.jogo.pk %}">Cancelar</a>
+</form>
+
+{% endblock %}

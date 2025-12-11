@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ jogo.nome }}</h1>
+
+<p><strong>Descrição:</strong> {{ jogo.descricao }}</p>
+<p><strong>Plataforma:</strong> {{ jogo.plataforma }}</p>
+<p><strong>Data de Lançamento:</strong> {{ jogo.data_lancamento }}</p>
+<p><strong>Gênero:</strong> {{ jogo.genero }}</p>
+
+<a href="{% url 'editar' jogo.pk %}" class="btn btn-warning">Editar</a>
+<a href="{% url 'excluir' jogo.pk %}" class="btn btn-danger">Excluir</a>
+<a href="{% url 'lista' %}" class="btn btn-secondary">Voltar</a>
+{% endblock %}

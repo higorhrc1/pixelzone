@@ -1,0 +1,9 @@
+{%extends 'base.html'%}
+{%block conteudo%}
+<h1>Lista de Usuarios</h1>
+<ul>
+    {%for form in usuario%}
+        <li>{{form.nome_usuario}} {{form.email}}</li>
+        {% endfor %}
+</ul>
+{%endblock%}
