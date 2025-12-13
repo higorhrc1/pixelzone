@@ -3,14 +3,14 @@ from .forms import registroform
 from .models import Usuario
 def registro (request):
     if request.method == 'POST':
-        form = registroform(request.POST)
+        form = registroform(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect("usuario:lista")
         
     else:
         form = registroform()
-    return render(request, 'usuarios/registro.html', {'form':form})
+    return render(request, 'usuarios/registro.html', {'form':form, 'titulo': 'Registrar'})
 
 def login(request):
     mensagem = ""
@@ -30,7 +30,7 @@ def login(request):
         except Usuario.DoesNotExist:
             mensagem = "Usuário não encontrado."
 
-    return render(request, "usuarios/login.html", {"mensagem": mensagem})
+    return render(request, "usuarios/login.html", {"mensagem": mensagem, 'titulo': 'Login'})
 
 def lista(request):
     usuario = Usuario.objects.all()

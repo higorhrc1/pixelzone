@@ -1,9 +1,12 @@
 {% extends "base.html" %}
 {%block conteudo%}
-<form method = 'POST'>
-    {% csrf_token %}
-    {{form.as_p}}
-
-    <button type = 'submit'>Enviar</button>
-    </form>
+<div style="display:flex; justify-content:center; margin: 40px; line-height: 50px;">
+    <div style="width: 500px; padding: 20px; border: 2px solid #333; border-radius: 15px;">
+        <h1"text-align:center; margin-bottom:20px;">{{titulo}}</h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Enviar</button>
+        </form>
+</div>
 {%endblock %}

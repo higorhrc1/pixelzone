@@ -1,17 +1,28 @@
 {% extends 'base.html' %}
 {% block conteudo %}
-<h1>Lista de jogos</h1>
-<ul>
-    {% for form in jogos %}
-        <li>{{ form.nome }} — {{ form.genero }}</li>
 
-        <a href="{% url 'reviews:lista' form.pk %}">
-            Ver Reviews
-        </a>
 
-        <a href="{% url 'reviews:criar' form.pk %}">
-            Adicionar Review
-        </a>
+
+<div class="galeria-destaque">
+    {% for jogo in jogos %}
+        <div class="card">
+
+            {% if jogo.imagem %}
+                <img src="{{ jogo.imagem.url }}" alt="{{ jogo.nome }}">
+            {% else %}
+                <img src="https://via.placeholder.com/200x225" alt="Sem imagem">
+            {% endif %}
+
+            <h1>{{ jogo.nome }}</h1>
+            <p>{{ jogo.genero.nome }}</p>
+
+            <div class="click">
+                <a href="{% url 'reviews:lista' jogo.pk %}">Ver Reviews</a><br>
+                <a href="{% url 'reviews:criar' jogo.pk %}">Adicionar Review</a>
+            </div>
+
+        </div>
     {% endfor %}
-</ul>
+</div>
+
 {% endblock %}

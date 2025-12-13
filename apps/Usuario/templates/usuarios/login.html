@@ -1,25 +1,28 @@
 {% extends "base.html" %}
 
 {% block conteudo %}
+<div style="display:flex; justify-content:center; margin: 40px; line-height: 50px;">
+    <div style="width: 500px; padding: 20px; border: 2px solid #333; border-radius: 15px;">
+        <h1"text-align:center; margin-bottom:20px;">{{titulo}}</h1>
 
-<h1>Login</h1>
+        <form method="POST">
+            {% csrf_token %}
 
-<form method="POST">
-    {% csrf_token %}
+            <p>Nome de usuário:<br>
+                <input type="text" name="nome_usuario" required>
+            </p>
 
-    <p>Nome de usuário:<br>
-        <input type="text" name="nome_usuario" required>
-    </p>
+            <p>Senha:<br>
+                <input type="password" name="senha" required>
+            </p>
 
-    <p>Senha:<br>
-        <input type="password" name="senha" required>
-    </p>
+            <button type="submit" style="margin-top:10px; padding:10px 20px;">Entrar</button>
 
-    <button type="submit">Entrar</button>
+            {% if mensagem %}
+                <p style="color: red;">{{ mensagem }}</p>
+            {% endif %}
+        </form>
+</div>
 
-    {% if mensagem %}
-        <p style="color: red;">{{ mensagem }}</p>
-    {% endif %}
-</form>
 
 {% endblock %}

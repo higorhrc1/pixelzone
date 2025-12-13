@@ -1,9 +1,23 @@
-{%extends 'base.html'%}
-{%block conteudo%}
-<h1>Lista de Genero</h1>
-<ul>
-    {%for form in generos%}
-        <li>{{form.nome}}</li>
-        {% endfor %}
-</ul>
-{%endblock%}
+{% extends 'base.html' %}
+{% block conteudo %}
+
+<h1 style="text-align:center;">Gêneros</h1>
+
+<div class="galeria-destaque">
+    {% for genero in generos %}
+        <div class="card">
+
+            {% if genero.imagem %}
+                <img src="{{ genero.imagem.url }}" alt="{{ genero.nome }}">
+            {% else %}
+                <img src="https://via.placeholder.com/200x225">
+            {% endif %}
+
+            <h1>{{ genero.nome }}</h1>
+            <p>{{ genero.descricao }}</p>
+
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

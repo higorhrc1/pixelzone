@@ -8,7 +8,7 @@ def lista_generos(request):
 
 def criar_genero(request):
     if request.method == 'POST':
-        form = GeneroForm(request.POST)
+        form = GeneroForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('genero:lista')
@@ -19,7 +19,7 @@ def criar_genero(request):
 def editar_genero(request, pk):
     genero = get_object_or_404(Genero, pk=pk)
     if request.method == 'POST':
-        form = GeneroForm(request.POST, instance=genero)
+        form = GeneroForm(request.POST, request.FILES, instance=genero)
         if form.is_valid():
             form.save()
             return redirect('genero:lista')

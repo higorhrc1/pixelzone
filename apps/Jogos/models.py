@@ -7,6 +7,6 @@ class Jogo(models.Model):
     plataforma = models.CharField(max_length=50)
     data_lancamento = models.DateField()
     genero = models.ForeignKey(Genero, on_delete=models.CASCADE, related_name='jogos')
-
+    imagem = models.ImageField(upload_to='jogos/')
     def __str__(self):
         return self.nome

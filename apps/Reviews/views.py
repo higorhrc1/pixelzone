@@ -57,7 +57,7 @@ def editar_review(request, pk):
 def excluir_review(request, pk):
     review = get_object_or_404(Review, pk=pk)
     if request.method == 'POST':
-        jogo_pk = review.jogo.pk  # pega o pk do jogo relacionado
+        jogo_pk = review.jogo.pk
         review.delete()
-        return redirect('reviews:lista', jogo_pk=jogo_pk)  # passa o argumento
+        return redirect('reviews:lista', jogo_pk=jogo_pk)
     return render(request, 'reviews/excluir.html', {'review': review})

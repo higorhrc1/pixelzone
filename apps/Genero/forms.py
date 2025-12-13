@@ -4,4 +4,4 @@ from .models import Genero
 class GeneroForm(forms.ModelForm):
     class Meta:
         model = Genero
-        fields = ['nome', 'descricao']
+        fields = ['nome', 'descricao', 'imagem']
