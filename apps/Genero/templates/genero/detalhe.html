@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+
+
+<h1 class="titulo-genero">
+    {{ genero.nome }}
+</h1>
+
+<p class="descricao-genero">
+    {{ genero.descricao }}
+</p>
+
+<div class="galeria-destaque">
+    {% for jogo in jogos %}
+        <div class="card">
+
+            {% if jogo.imagem %}
+                <img src="{{ jogo.imagem.url }}" alt="{{ jogo.nome }}">
+            {% else %}
+                <img src="https://via.placeholder.com/200x225">
+            {% endif %}
+
+            <h1>{{ jogo.nome }}</h1>
+            <p>{{ jogo.genero.nome }}</p>
+
+            <div class="click">
+                <a href="{% url 'jogos:detalhe' jogo.pk %}">
+                    Ver detalhes
+                </a>
+            </div>
+
+        </div>
+    {% empty %}
+        <p class="descricao-genero">
+            Nenhum jogo cadastrado para este gênero.
+        </p>
+    {% endfor %}
+
+    
+</div>
+<div class="acoes-g">
+    <div class="acoes-genero">
+        <a href="{% url 'genero:lista' %} " class="acoes-genero">Voltar</a>
+    </div>
+</div>
+
+
+{% endblock %}

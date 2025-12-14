@@ -1,25 +1,36 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% block conteudo %}
 
-<h1>Adicionar Review para {{ jogo.nome }}</h1>
+<div class="form-container">
+    <div class="form-card">
+        <h1 class="form-title">{{ titulo }}</h1>
 
-<form method="POST">
-    {% csrf_token %}
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}         
+            {% csrf_token %}
 
-    <p>Usuário:</p>
-    <select name="usuario">
-        {% for u in usuarios %}
-        <option value="{{ u.id }}">{{ u.nome_usuario }}</option>
-        {% endfor %}
-    </select>
+            <p>Usuário:</p>
+            <select name="usuario">
+                {% for u in usuarios %}
+                <option value="{{ u.id }}">{{ u.nome_usuario }}</option>
+                {% endfor %}
+            </select>
 
-    <p>Nota (0 a 10):</p>
-    <input type="number" name="nota" min="0" max="10">
+            <p>Nota (0 a 10):</p>
+            <input type="number" name="nota" min="0" max="10">
 
-    <p>Comentário:</p>
-    <textarea name="comentario"></textarea>
+            <p>Comentário:</p>
+            <textarea name="comentario"></textarea>
 
-    <button type="submit">Enviar</button>
-</form>
+            <button type="submit" class="btn-enviar">Enviar</button>
+
+            {% if mensagem %}
+                <p style="color: red;">{{ mensagem }}</p>
+            {% endif %}
+        </form>
+    </div>
+</div>
 
 {% endblock %}
+
+

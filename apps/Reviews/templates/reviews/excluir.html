@@ -1,15 +1,36 @@
 {% extends 'base.html' %}
 {% block conteudo %}
-<h1>Excluir Review</h1>
 
-<p>Tem certeza que deseja excluir essa review?</p>
+<div class="delete-container">
+    <div class="delete-card">
+        <h2 class="delete-title">Excluir Review</h2>
 
-<p><strong>{{ review.jogo.nome }}</strong> — nota: {{ review.nota }}</p>
+        <p class="delete-text">
+            Tem certeza que deseja excluir a review do jogo:
+            <strong>"{{ review.jogo.nome }}"</strong>?
+        </p>
+        
+        <p class="delete-info">
+            Nota dada: <strong>{{ review.nota }}</strong>
+        </p>
+        
+        <div class="delete-comment">
+            <strong>Comentário:</strong>
+            <p>"{{ review.comentario }}"</p>
+        </div>
 
-<form method="POST">
-    {% csrf_token %}
-    <button type="submit">Excluir</button>
-    <a href="{% url 'reviews:lista' review.jogo.pk %}">Cancelar</a>
-</form>
+        <p class="delete-warning">
+            ⚠️ Esta ação não pode ser desfeita.
+        </p>
+
+        <form method="POST" class="delete-actions">
+            {% csrf_token %}
+            <button type="submit" class="btn-delete">Sim, excluir</button>
+            <a href="{% url 'reviews:lista' review.jogo.pk %}" class="btn-cancel">
+                Cancelar
+            </a>
+        </form>
+    </div>
+</div>
 
 {% endblock %}

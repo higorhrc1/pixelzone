@@ -1,16 +1,21 @@
-{% extends 'base.html' %}
-
+{% extends "base.html" %}
 {% block conteudo %}
-<div style="display:flex; justify-content:center; margin: 40px; line-height: 50px;">
-    <div style="width: 500px; padding: 20px; border: 2px solid #333; border-radius: 15px;">
-        <h2 style="text-align:center; margin-bottom:20px;">{{ titulo }}</h2>
+
+<div class="form-container">
+    <div class="form-card">
+        <h1 class="form-title">{{ titulo }}</h1>
 
         <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
+            {% csrf_token %}         
             {{ form.as_p }}
 
-            <button type="submit" style="margin-top:10px; padding:10px 20px;">Salvar</button>
+            <button type="submit" class="btn-enviar">Salvar</button>
+
+            {% if mensagem %}
+                <p style="color: red;">{{ mensagem }}</p>
+            {% endif %}
         </form>
-    </div>
+    </div>  
 </div>
+
 {% endblock %}

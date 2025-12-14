@@ -15,7 +15,9 @@
 
             <h1>{{ genero.nome }}</h1>
             <p>{{ genero.descricao }}</p>
-
+            <div class="click">
+                <a href="{% url 'genero:detalhe' genero.pk %}">Ver jogos</a>
+            </div>
         </div>
     {% endfor %}
 </div>

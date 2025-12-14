@@ -1,32 +1,28 @@
 {% extends 'base.html' %}
 
 {% block conteudo %}
-<h1>Reviews de {{ jogo.nome }}</h1>
+<h2 class="h2">Reviews</h2>
 
-<ul>
+{% if reviews %}
     {% for review in reviews %}
-        <li>
-            <strong>{{ review.usuario.nome_usuario }}</strong> 
-            — Nota: {{ review.nota }} <br>
-            {{ review.comentario }}
-
-            <div>
-                <a href="{% url 'reviews:editar' review.pk %}">
-                    Editar
-                </a>
-
-                <a href="{% url 'reviews:excluir' review.pk %}">
-                    Excluir
-                </a>
-            </div>
-        </li>
-    {% empty %}
-        <li>Nenhuma review cadastrada ainda.</li>
+        <div class="review-card">
+            <p><strong>{{ review.usuario.nome_usuario }}</strong></p>
+            <p>Nota: {{ review.nota }}</p>
+            <p>{{ review.comentario }}</p>
+            <small>{{ review.data }}</small>
+        </div>
     {% endfor %}
-</ul>
 
-<a href="{% url 'reviews:criar' jogo.pk %}">
-    Adicionar Review
-</a>
+{% else %}
+        <div class="review-card">
+            <p>Este jogo ainda não possui reviews.</p>
+        </div>
+    
+{% endif %}
 
+<div class="acoes-g">
+    <div class="acoes-genero">
+        <a href="{% url 'reviews:criar' jogo.pk %}">Adicionar Review</a>
+    </div>
+</div>
 {% endblock %}

@@ -1,11 +1,25 @@
 {% extends 'base.html' %}
 {% block conteudo %}
-  <h2>Excluir Gênero</h2>
-  <p>Tem certeza que deseja excluir "<strong>{{ jogo.nome }}</strong>"?</p>
 
-  <form method="post">
-    {% csrf_token %}
-    <button type="submit">Sim, excluir</button>
-    <a href="{% url 'genero:lista' %}">Cancelar</a>
-  </form>
+<div class="delete-container">
+    <div class="delete-card">
+        <h2 class="delete-title">Excluir Jogo</h2>
+
+        <p class="delete-text">
+            Tem certeza que deseja excluir o jogo:
+            <strong>"{{ jogo.nome }}"</strong>?
+        </p>
+
+        <p class="delete-warning">
+            ⚠️ Esta ação não pode ser desfeita.
+        </p>
+
+        <form method="post" class="delete-actions">
+            {% csrf_token %}
+            <button type="submit" class="btn-delete">Sim, excluir</button>
+            <a href="{% url 'jogos:lista' %}" class="btn-cancel">Cancelar</a>
+        </form>
+    </div>
+</div>
+
 {% endblock %}

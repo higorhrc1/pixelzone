@@ -70,6 +70,282 @@
             margin-right: -2px;
         }
 
+        .titulo-genero {
+            text-align: center;
+            font-family: "Momo Trust Display", sans-serif;
+            font-size: 2.4em;
+            margin-bottom: 15px;
+            color: rgba(0, 0, 0, 0.85);
+        }
+        
+        .descricao-genero {
+            max-width: 850px;
+            margin: 0 auto 45px;
+            text-align: center;
+            font-family: "Zalando Sans SemiExpanded", sans-serif;
+            font-size: 1.05em;
+            line-height: 1.6;
+            color: rgba(0, 0, 0, 0.65);
+        }        
+
+        .form-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 60px 20px;
+        }
+        
+        .form-card {
+            width: 100%;
+            max-width: 500px;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+            font-family: "Zalando Sans SemiExpanded", sans-serif;
+        }
+        
+        .form-title {
+            text-align: center;
+            font-family: "Momo Trust Display", sans-serif;
+            margin-bottom: 25px;
+            color: rgba(0, 0, 0, 0.85);
+        }
+
+        .form-card input,
+        .form-card select,
+        .form-card textarea {
+            max-width: 477px;
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 1px solid #999;
+            font-family: "Zalando Sans SemiExpanded", sans-serif;
+        }
+  
+        .btn-enviar {
+            width: 100%;
+            padding: 12px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-family: "Alumni Sans Pinstripe", sans-serif;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .btn-enviar:hover {
+            background-color: gray;
+            color: black;
+        }
+
+        @media (max-width: 600px) {
+            .form-card {
+                padding: 20px;
+            }
+        }
+        
+
+        .detalhe-jogo {
+            display: flex;
+            align-items: flex-start;
+            gap: 30px;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 25px;
+            border-radius: 15px;
+            max-width: 1100px;
+            margin: 40px auto;
+        }
+        
+        .imagem-jogo {
+            width: 280px;
+            border-radius: 12px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+        
+        .texto-aside {
+            flex: 1;
+        }
+        
+        .texto-aside h1 {
+            font-family: "Momo Trust Display", sans-serif;
+            margin-bottom: 15px;
+            color: rgba(0, 0, 0, 0.85);
+        }
+        
+        .texto-aside p {
+            font-family: "Zalando Sans SemiExpanded", sans-serif;
+            margin-bottom: 8px;
+            color: rgba(0, 0, 0, 0.65);
+        }
+        
+        .acoes a {
+            display: inline-block;
+            margin-right: 10px;
+            margin-top: 15px;
+            padding: 8px 14px;
+            background-color: #333;
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: 0.3s;
+            font-family: "Zalando Sans SemiExpanded", sans-serif;
+        }
+        
+        .acoes a:hover {
+            background-color: gray;
+            color: black;
+        }
+        
+        .h2 {
+            text-align:center; 
+            margin: 10px; 
+            font-family: "Momo Trust Display", sans-serif;
+        }
+
+        .review-card {
+            background: #f1f1f1;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px;
+            font-family: "Zalando Sans SemiExpanded", sans-serif;
+        }
+
+        @media (max-width: 750px) {
+            .detalhe-jogo {
+                flex-direction: column;
+                text-align: center;
+            }
+        
+            .imagem-jogo {
+                width: 60%;
+            }
+        }        
+
+        .delete-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 80px 20px;
+        }
+        
+        .delete-card {
+            max-width: 500px;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.97);
+            padding: 30px;
+            border-radius: 18px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .delete-title {
+            font-family: "Momo Trust Display", sans-serif;
+            margin-bottom: 20px;
+            color: rgba(0, 0, 0, 0.85);
+        }
+
+        .delete-text,
+        .delete-info {
+            font-family: "Zalando Sans SemiExpanded", sans-serif;
+            color: rgba(0, 0, 0, 0.75);
+            margin-bottom: 10px;
+        }
+
+        .delete-comment {
+            background-color: rgba(0, 0, 0, 0.05);
+            padding: 12px;
+            border-radius: 10px;
+            margin: 15px 0 20px;
+            font-family: "Zalando Sans SemiExpanded", sans-serif;
+            color: rgba(0, 0, 0, 0.75);
+        }
+        
+        .delete-comment p {
+            margin-top: 5px;
+            font-style: italic;
+        }
+        
+        .delete-text {
+            font-family: "Zalando Sans SemiExpanded", sans-serif;
+            color: rgba(0, 0, 0, 0.75);
+            margin-bottom: 15px;
+        }
+        
+        .delete-warning {
+            font-family: "Zalando Sans SemiExpanded", sans-serif;
+            color: #b00020;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+        
+        .delete-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .btn-delete {
+            padding: 10px 20px;
+            background-color: #b00020;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-family: "Alumni Sans Pinstripe", sans-serif;
+            font-size: 1em;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .btn-delete:hover {
+            background-color: #ffcc00;
+            color: black;
+        }
+        
+        .btn-cancel {
+            padding: 10px 20px;
+            background-color: #555;
+            color: white;
+            border-radius: 10px;
+            text-decoration: none;
+            font-family: "Alumni Sans Pinstripe", sans-serif;
+            transition: 0.3s;
+        }
+        
+        .btn-cancel:hover {
+            background-color: #777;
+        }  
+        
+        .acoes-g {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .acoes-genero a {
+            display: inline-block;
+            margin: 15px;
+            padding: 8px 14px;
+            background-color: #333;
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: 0.3s;
+            font-family: "Zalando Sans SemiExpanded", sans-serif;
+        }
+        
+        .acoes-genero a:hover {
+            background-color: gray;
+            color: black;
+        }
+
         .galeria-destaque {
             display: flex;
             flex-wrap: wrap;

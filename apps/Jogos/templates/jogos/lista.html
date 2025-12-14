@@ -17,8 +17,10 @@
             <p>{{ jogo.genero.nome }}</p>
 
             <div class="click">
+                {% comment "" %}
                 <a href="{% url 'reviews:lista' jogo.pk %}">Ver Reviews</a><br>
-                <a href="{% url 'reviews:criar' jogo.pk %}">Adicionar Review</a>
+                {% endcomment %}                
+                <a href="{% url 'jogos:detalhe' jogo.pk %}">Ver detalhes</a>
             </div>
 
         </div>

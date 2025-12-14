@@ -1,14 +1,57 @@
 {% extends 'base.html' %}
 
-{% block content %}
-<h1>{{ jogo.nome }}</h1>
+{% block conteudo %}
 
-<p><strong>Descrição:</strong> {{ jogo.descricao }}</p>
-<p><strong>Plataforma:</strong> {{ jogo.plataforma }}</p>
-<p><strong>Data de Lançamento:</strong> {{ jogo.data_lancamento }}</p>
-<p><strong>Gênero:</strong> {{ jogo.genero }}</p>
+<aside class="detalhe-jogo">
 
-<a href="{% url 'editar' jogo.pk %}" class="btn btn-warning">Editar</a>
-<a href="{% url 'excluir' jogo.pk %}" class="btn btn-danger">Excluir</a>
-<a href="{% url 'lista' %}" class="btn btn-secondary">Voltar</a>
+    {% if jogo.imagem %}
+        <img src="{{ jogo.imagem.url }}" alt="{{ jogo.nome }}" class="imagem-jogo">
+    {% endif %}
+
+    <div class="texto-aside">
+        <h1>{{ jogo.nome }}</h1>
+
+        <p><strong>Descrição:</strong> {{ jogo.descricao }}</p>
+        <p><strong>Plataforma:</strong> {{ jogo.plataforma }}</p>
+        <p><strong>Data de Lançamento:</strong> {{ jogo.data_lancamento }}</p>
+        <p><strong>Gênero:</strong> {{ jogo.genero.nome }}</p>
+
+        <div class="acoes">
+            {% comment "" %}
+            <a href="{% url 'jogos:editar' jogo.pk %}">Editar</a>
+            <a href="{% url 'jogos:excluir' jogo.pk %}">Excluir</a>
+            {% endcomment %}
+            <a href="{% url 'jogos:lista' %}">Voltar</a>
+        </div>
+    </div>
+
+</aside>
+
+<hr>
+
+<h2 class="h2">Reviews</h2>
+
+{% if reviews %}
+    {% for review in reviews %}
+        <div class="review-card">
+            <p><strong>{{ review.usuario.nome_usuario }}</strong></p>
+            <p>Nota: {{ review.nota }}</p>
+            <p>{{ review.comentario }}</p>
+            <small>{{ review.data }}</small>
+        </div>
+    {% endfor %}
+
+{% else %}
+        <div class="review-card">
+            <p>Este jogo ainda não possui reviews.</p>
+        </div>
+    
+{% endif %}
+
+<div class="acoes-g">
+    <div class="acoes-genero">
+        <a href="{% url 'reviews:criar' jogo.pk %}">Adicionar Review</a>
+    </div>
+</div>
+
 {% endblock %}

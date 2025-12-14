@@ -1,19 +1,26 @@
 {% extends "base.html" %}
 {% block conteudo %}
 
-<h1>Editar Review</h1>
+<div class="form-container">
+    <div class="form-card">
+        <h1 class="form-title">{{ titulo }}</h1>
 
-<form method="POST">
-    {% csrf_token %}
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
 
-    <p>Nota:</p>
-    <input type="number" name="nota" value="{{ review.nota }}" min="0" max="10" required>
+            <p>Nota:</p>
+            <input type="number" name="nota" value="{{ review.nota }}" min="0" max="10" required>
 
-    <p>Comentário:</p>
-    <textarea name="comentario" required>{{ review.comentario }}</textarea>
+            <p>Comentário:</p>
+            <textarea name="comentario" required>{{ review.comentario }}</textarea>
 
-    <br><br>
-    <button type="submit">Salvar alterações</button>
-</form>
+            <button type="submit" class="btn-enviar">Enviar</button>
+
+            {% if mensagem %}
+                <p style="color: red;">{{ mensagem }}</p>
+            {% endif %}
+        </form>
+    </div>
+</div>
 
 {% endblock %}

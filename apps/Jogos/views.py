@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Jogo
 from .forms import JogoForm
+from apps.Reviews.models import Review
 
 def lista_jogos(request):
     jogos = Jogo.objects.all()
@@ -8,7 +9,8 @@ def lista_jogos(request):
 
 def detalhe_jogo(request, pk):
     jogo = get_object_or_404(Jogo, pk=pk)
-    return render(request, 'jogos/detalhe.html', {'jogo': jogo})
+    reviews = Review.objects.filter(jogo=jogo)
+    return render(request, 'jogos/detalhe.html', {'jogo': jogo, 'reviews': reviews})
 
 def criar_jogo(request):
     if request.method == 'POST':
