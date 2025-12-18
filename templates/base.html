@@ -12,14 +12,6 @@
             padding: 0px;
         }
 
-        html, body {
-            height: 100%;
-        }
-
-        body {
-            background-color: white;
-        }
-
         header {
             background-color: rgba(0, 0, 0, 0.767);
             min-height: 300px;
@@ -44,6 +36,28 @@
             font-family: "Zalando Sans SemiExpanded", sans-serif;
             padding: 20px;
             color: white;
+        }
+
+        .linkh {
+            margin: 20px;
+            font-family: "Zalando Sans SemiExpanded", sans-serif;
+            color: white;
+        }
+
+        .linkh a {
+            text-decoration: none;
+            font-family: "Zalando Sans SemiExpanded", sans-serif;
+            color: white;
+            background-color: #5f5b5b;
+            padding: 10px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .linkh a:hover {
+            background-color: gray;
+            color: rgba(0, 0, 0, 0.767);
+            transition-duration: 0.5s;
         }
 
         nav {
@@ -73,14 +87,26 @@
             margin-right: -2px;
         }
 
+        html, body {
+            height: 100%;
+        }
+
         body {
             display: flex;
             flex-direction: column;
+            background-color: white;
         }
 
         main {
             margin-top: 80px;
             flex:1;
+        }
+
+        .title {
+            text-align: center;
+            font-family: "Momo Trust Display", sans-serif;
+            margin-bottom: 25px;
+            color: rgba(0, 0, 0, 0.85);
         }
 
         .titulo-genero {
@@ -128,8 +154,7 @@
         .form-card input,
         .form-card select,
         .form-card textarea {
-            max-width: 477px;
-            width: 100%;
+            width: 90%;
             padding: 10px;
             margin-top: 6px;
             margin-bottom: 15px;
@@ -139,7 +164,7 @@
         }
   
         .btn-enviar {
-            width: 100%;
+            width: 95%;
             padding: 12px;
             background-color: #333;
             color: white;
@@ -162,6 +187,21 @@
             }
         }
         
+        .link-auth {
+            margin-top: 18px;
+            text-align: center;
+            font-family: "Zalando Sans SemiExpanded", sans-serif;
+        }
+        
+        .link-auth a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        
+        .link-auth a:hover {
+            text-decoration: underline;
+        }        
 
         .detalhe-jogo {
             display: flex;
@@ -192,6 +232,7 @@
         }
         
         .texto-aside p {
+            text-align: justify;
             font-family: "Zalando Sans SemiExpanded", sans-serif;
             margin-bottom: 8px;
             color: rgba(0, 0, 0, 0.65);
@@ -232,13 +273,20 @@
         @media (max-width: 750px) {
             .detalhe-jogo {
                 flex-direction: column;
+                align-items: center; 
                 text-align: center;
             }
         
             .imagem-jogo {
-                width: 60%;
+                width: 70%;
+                margin: 0 auto; 
+                display: block;
             }
-        }        
+        
+            .texto-aside {
+                width: 100%;
+            }
+        }       
 
         .delete-container {
             display: flex;
@@ -359,6 +407,35 @@
             color: black;
         }
 
+        .acoes_usuario a:hover {
+            background-color: gray;
+            color: black;
+        }
+
+        .acoes_u {
+            display: flex;
+            justify-content: center;  
+            align-items: center;    
+            gap: 8px;                 
+            margin-top: 20px;
+            flex-shrink: 0; 
+        }
+        
+
+        .acoes_u a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 14px;
+            background-color: #333;
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: 0.3s;
+        }        
+        
+        
+
         .galeria-destaque {
             display: flex;
             flex-wrap: wrap;
@@ -397,6 +474,7 @@
         }
         
         .card p {
+            text-align: justify;
             font-size: 0.75em;
             padding: 0 10px;
         }
@@ -408,6 +486,7 @@
         
         .click {
             font-family: "Alumni Sans Pinstripe", sans-serif;
+            margin: 10px;
             padding-bottom: 10px;
         }
         
@@ -427,8 +506,8 @@
         .usuario-card {
             display: flex;
             align-items: center;
-            gap: 15px;
-            width: 280px;
+            gap: 12px;
+            width: 400px;
             padding: 15px;
             border-radius: 12px;
             background-color: rgba(0, 0, 0, 0.08);
@@ -439,6 +518,12 @@
         .usuario-card:hover {
             transform: scale(1.05);
         }
+
+        .usuario-info {
+            flex: 1;              
+            min-width: 0;           
+        }
+        
         
         .avatar {
             width: 70px;
@@ -451,11 +536,31 @@
         .usuario-info .nome {
             font-weight: bold;
             font-size: 1em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
         .usuario-info .email {
             font-size: 0.85em;
             color: #444;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        } 
+        
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+        
+        .foto-perfil {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
         }        
         
         footer {
@@ -465,6 +570,8 @@
             text-align: center;
         }
     </style>
+    {% load static %}
+    <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
 </head>
 <body>
     <header>
@@ -473,10 +580,16 @@
 
         <h1>PixelZone</h1>
         <p>Aqui é o Lugar Ideal Para Saber Curiosidades <br> Sobre Games!</p>
+
+        <div class="linkh">
+            {% if request.session.usuario_id %}
+                <span>Olá, {{ request.session.usuario_nome }}</span>
+                <a href="{% url 'usuario:logout' %}"><strong>Sair</strong></a>
+            {%else%}
+                <a href="{% url 'usuario:login' %}">Login</a>
+            {% endif %}
+        </div>
     </header>
-    {% comment %}
-    
-    {% endcomment %}
     <nav>
         <a href="{% url 'jogos:lista' %}">Jogos</a>
         <a href="{% url 'genero:lista' %}">Gêneros</a>

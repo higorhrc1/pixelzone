@@ -5,11 +5,15 @@
     <div class="form-card">
         <h1 class="form-title">{{ titulo }}</h1>
 
-        <form method="POST" enctype="multipart/form-data">
+        <form method="POST" enctype="multipart/form-data" autocomplete="off">
             {% csrf_token %}
             {{ form.as_p }}
 
             <button type="submit" class="btn-enviar">Enviar</button>
+            <p class="link-auth">
+                Já possui uma conta?
+                <a href="{% url 'usuario:login' %}">Faça login</a>
+            </p> 
         </form>
     </div>
 </div>

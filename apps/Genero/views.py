@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Genero
 from .forms import GeneroForm
 from apps.Jogos.models import Jogo
+from apps.Usuario.decorators import admin_required, login_required_custom
+
 
 def lista_generos(request):
     generos = Genero.objects.all()
@@ -18,6 +20,7 @@ def detalhe_genero(request, pk):
 
     return render(request, 'genero/detalhe.html', context)
 
+@admin_required
 def criar_genero(request):
     if request.method == 'POST':
         form = GeneroForm(request.POST, request.FILES)
@@ -28,6 +31,7 @@ def criar_genero(request):
         form = GeneroForm()
     return render(request, 'genero/form.html', {'form': form, 'titulo': 'Criar Gênero'})
 
+@admin_required
 def editar_genero(request, pk):
     genero = get_object_or_404(Genero, pk=pk)
     if request.method == 'POST':
@@ -39,6 +43,7 @@ def editar_genero(request, pk):
         form = GeneroForm(instance=genero)
     return render(request, 'genero/form.html', {'form': form, 'titulo': 'Editar Gênero'})
 
+@admin_required
 def excluir_genero(request, pk):
     genero = get_object_or_404(Genero, pk=pk)
     if request.method == 'POST':

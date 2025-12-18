@@ -17,10 +17,10 @@
         <p><strong>Gênero:</strong> {{ jogo.genero.nome }}</p>
 
         <div class="acoes">
-            {% comment "" %}
-            <a href="{% url 'jogos:editar' jogo.pk %}">Editar</a>
-            <a href="{% url 'jogos:excluir' jogo.pk %}">Excluir</a>
-            {% endcomment %}
+            {% if request.session.is_admin %}
+                <a href="{% url 'jogos:editar' jogo.pk %}">Editar</a>
+                <a href="{% url 'jogos:excluir' jogo.pk %}">Excluir</a>
+            {% endif %}
             <a href="{% url 'jogos:lista' %}">Voltar</a>
         </div>
     </div>
@@ -34,10 +34,21 @@
 {% if reviews %}
     {% for review in reviews %}
         <div class="review-card">
-            <p><strong>{{ review.usuario.nome_usuario }}</strong></p>
+            <div class="review-header">
+                {% if review.usuario.imagem %}
+                    <img src="{{ review.usuario.imagem.url }}" class="foto-perfil">
+                {% endif %}               
+            </div>
+            <strong>{{ review.usuario.nome_usuario }}</strong>
             <p>Nota: {{ review.nota }}</p>
             <p>{{ review.comentario }}</p>
             <small>{{ review.data }}</small>
+            {% if request.session.usuario_id == review.usuario.id or request.session.is_admin %}
+            <div class="acoes">
+                <a href="{% url 'reviews:editar' review.pk %}">Editar</a>
+                <a href="{% url 'reviews:excluir' review.pk %}">Excluir</a>
+            </div>
+            {% endif %}
         </div>
     {% endfor %}
 

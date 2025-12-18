@@ -16,15 +16,19 @@
             <h1>{{ jogo.nome }}</h1>
             <p>{{ jogo.genero.nome }}</p>
 
-            <div class="click">
-                {% comment "" %}
-                <a href="{% url 'reviews:lista' jogo.pk %}">Ver Reviews</a><br>
-                {% endcomment %}                
+            <div class="click">            
                 <a href="{% url 'jogos:detalhe' jogo.pk %}">Ver detalhes</a>
             </div>
 
         </div>
     {% endfor %}
+</div>
+<div class="acoes-g">
+    <div class="acoes-genero">
+        {% if request.session.is_admin %}              
+            <a href="{% url 'jogos:criar'%} " class="acoes-genero">Criar</a>
+        {% endif %}
+    </div>
 </div>
 
 {% endblock %}

@@ -6,9 +6,11 @@
     {{ genero.nome }}
 </h1>
 
+{% comment "" %}
 <p class="descricao-genero">
     {{ genero.descricao }}
 </p>
+{% endcomment %}
 
 <div class="galeria-destaque">
     {% for jogo in jogos %}
@@ -36,10 +38,13 @@
         </p>
     {% endfor %}
 
-    
 </div>
 <div class="acoes-g">
     <div class="acoes-genero">
+        {% if request.session.is_admin %}              
+            <a href="{% url 'genero:editar' genero.pk %} " class="acoes-genero">Editar</a>
+            <a href="{% url 'genero:excluir' genero.pk %} " class="acoes-genero">Excluir</a>
+        {% endif %}
         <a href="{% url 'genero:lista' %} " class="acoes-genero">Voltar</a>
     </div>
 </div>

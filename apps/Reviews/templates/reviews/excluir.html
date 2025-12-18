@@ -26,7 +26,7 @@
         <form method="POST" class="delete-actions">
             {% csrf_token %}
             <button type="submit" class="btn-delete">Sim, excluir</button>
-            <a href="{% url 'reviews:lista' review.jogo.pk %}" class="btn-cancel">
+            <a href="{% url 'jogos:detalhe' review.jogo.pk %}" class="btn-cancel">
                 Cancelar
             </a>
         </form>

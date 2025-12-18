@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block conteudo %}
 
-<h1 style="text-align:center; margin-bottom:30px;">Lista de Usuários</h1>
+<h1 class="title">Lista de Usuários</h1>
 
 <div class="usuarios-container">
     {% for usuario in usuario %}
@@ -12,6 +12,15 @@
             <div class="usuario-info">
                 <h1 class="nome">{{ usuario.nome_usuario }}</h1>
                 <p class="email">{{ usuario.email }}</p>
+            </div>
+
+            <div class="acoes_usuario">
+                <div class="acoes_u">
+                    {% if request.session.is_admin %}              
+                        <a href="{% url 'usuario:editar' usuario.pk %}">Editar</a>            
+                        <a href="{% url 'usuario:excluir_usuario' usuario.pk %}">Excluir</a>
+                    {% endif %}
+                </div>
             </div>
 
         </div>

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+
+<div class="delete-container">
+    <div class="delete-card">
+        <h2 class="delete-title">Excluir Usuario</h2>
+
+        <p class="delete-text">
+            Tem certeza que deseja excluir o Usuário:
+            <strong>"{{ usuario.nome_usuario }}"</strong>?
+        </p>
+
+        <p class="delete-warning">
+            ⚠️ Esta ação não pode ser desfeita.
+        </p>
+
+        <form method="post" class="delete-actions">
+            {% csrf_token %}
+            <button type="submit" class="btn-delete">Sim, excluir</button>
+            <a href="{% url 'jogos:lista' %}" class="btn-cancel">Cancelar</a>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

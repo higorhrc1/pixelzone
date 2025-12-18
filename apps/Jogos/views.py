@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Jogo
 from .forms import JogoForm
 from apps.Reviews.models import Review
+from apps.Usuario.decorators import admin_required, login_required_custom
 
 def lista_jogos(request):
     jogos = Jogo.objects.all()
@@ -12,6 +13,7 @@ def detalhe_jogo(request, pk):
     reviews = Review.objects.filter(jogo=jogo)
     return render(request, 'jogos/detalhe.html', {'jogo': jogo, 'reviews': reviews})
 
+@admin_required
 def criar_jogo(request):
     if request.method == 'POST':
         form = JogoForm(request.POST, request.FILES)
@@ -23,6 +25,7 @@ def criar_jogo(request):
 
     return render(request, 'jogos/form.html', {'form': form,'titulo': 'Criar Jogo'})
 
+@admin_required
 def editar_jogo(request, pk):
     jogo = get_object_or_404(Jogo, pk=pk)
 
@@ -36,6 +39,7 @@ def editar_jogo(request, pk):
 
     return render(request, 'jogos/form.html', {'form': form, 'titulo': 'Editar Jogo'})
 
+@admin_required
 def excluir_jogo(request, pk):
     jogo = get_object_or_404(Jogo, pk=pk)
     if request.method == 'POST':

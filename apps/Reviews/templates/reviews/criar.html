@@ -6,27 +6,9 @@
         <h1 class="form-title">{{ titulo }}</h1>
 
         <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}         
             {% csrf_token %}
-
-            <p>Usuário:</p>
-            <select name="usuario">
-                {% for u in usuarios %}
-                <option value="{{ u.id }}">{{ u.nome_usuario }}</option>
-                {% endfor %}
-            </select>
-
-            <p>Nota (0 a 10):</p>
-            <input type="number" name="nota" min="0" max="10">
-
-            <p>Comentário:</p>
-            <textarea name="comentario"></textarea>
-
+            {{ form.as_p }}
             <button type="submit" class="btn-enviar">Enviar</button>
-
-            {% if mensagem %}
-                <p style="color: red;">{{ mensagem }}</p>
-            {% endif %}
         </form>
     </div>
 </div>

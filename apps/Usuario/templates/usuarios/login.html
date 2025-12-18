@@ -5,7 +5,7 @@
     <div class="form-card">
         <h1 class="form-title">{{ titulo }}</h1>
 
-        <form method="POST" enctype="multipart/form-data">
+        <form method="POST" enctype="multipart/form-data" autocomplete="off">
             {% csrf_token %}
             <p>Nome de usuário:<br>
                 <input type="text" name="nome_usuario" required>
@@ -14,13 +14,16 @@
             <p>Senha:<br>
                 <input type="password" name="senha" required>
             </p>
-
-            <button type="submit" class="btn-enviar">Entrar</button>
-
             {% if mensagem %}
-                <p style="color: red;">{{ mensagem }}</p>
+                <p style="color: red;">{{mensagem}}</p>
             {% endif %}
+            <button type="submit" class="btn-enviar">Entrar</button>   
+            <p class="link-auth">
+                Ainda não tem uma conta?
+                <a href="{% url 'usuario:registrar' %}">Registre-se</a>
+            </p>                    
         </form>
+
     </div>
 </div>
 
